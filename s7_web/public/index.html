@@ -1,0 +1,362 @@
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLC Kontrol Paneli</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PLC Kontrol Paneli</h1>
+  
+  <h2>Aydınlatma Kontrolü</h2>
+  <button onclick="turnOnIşık01()">Turn On Işık 01</button>
+  
+  <button onclick="turnOffIşık01()">Turn Off Işık 01</button>
+  <button onclick="turnOnIşık02()">Turn On Işık 02</button>
+  <button onclick="turnOffIşık02()">Turn Off Işık 02</button>
+  <button onclick="turnOnIşık03()">Turn On Işık 03</button>
+  <button onclick="turnOffIşık03()">Turn Off Işık 03</button>
+  <button onclick="turnOnIşık04()">Turn On Işık 04</button>
+  <button onclick="turnOffIşık04()">Turn Off Işık 04</button>
+  <button onclick="turnOnIşık05()">Turn On Işık 05</button>
+  <button onclick="turnOffIşık05()">Turn Off Işık 05</button>
+  <button onclick="turnOnIşık06()">Turn On Işık 06</button>
+  <button onclick="turnOffIşık06()">Turn Off Işık 06</button>
+  <button onclick="turnOnIşık07()">Turn On Işık 07</button>
+  <button onclick="turnOffIşık07()">Turn Off Işık 07</button>
+  <button onclick="turnOnIşık08()">Turn On Işık 08</button>
+  <button onclick="turnOffIşık08()">Turn Off Işık 08</button>
+  <button onclick="turnOnIşık09()">Turn On Işık 09</button>
+  <button onclick="turnOffIşık09()">Turn Off Işık 09</button>
+  <button onclick="turnOnIşık010()">Turn On Işık 010</button>
+  <button onclick="turnOffIşık010()">Turn Off Işık 010</button>
+
+
+
+  <button id="Işık01" onclick="toggleDevice('Işık01')">Turn On Işık 01</button>
+  <script>
+    // Buton durumlarını tutacak bir nesne oluşturuldu
+    var buttonStatus = {};
+
+    function toggleDevice(deviceId) {
+      // Butonun durumunu tersine çevir
+      buttonStatus[deviceId] = !buttonStatus[deviceId];
+
+      // Butonun durumuna göre metin oluştur
+      var statusText = buttonStatus[deviceId] ? 'Açık' : 'Kapalı';
+
+      // Durumu ekranda göster
+      document.getElementById('status').innerHTML = deviceId + ' durumu: ' + statusText;
+
+      // fetch işlemini gerçekleştir
+      fetch('/' + deviceId + (buttonStatus[deviceId] ? '/on' : '/off'), { method: 'POST' });
+    }
+  </script>
+
+  <h2>Priz Kontrolü</h2>
+  
+  <button onclick="turnOnPriz01()">Turn On Priz 01</button>
+  <button onclick="turnOffPriz01()">Turn Off Priz 01</button>
+  <button onclick="turnOnPriz02()">Turn On Priz 02</button>
+  <button onclick="turnOffPriz02()">Turn Off Priz 02</button>
+  <button onclick="turnOnPriz03()">Turn On Priz 03</button>
+  <button onclick="turnOffPriz03()">Turn Off Priz 03</button>
+  <button onclick="turnOnPriz04()">Turn On Priz 04</button>
+  <button onclick="turnOffPriz04()">Turn Off Priz 04</button>
+  <button onclick="turnOnPriz05()">Turn On Priz 05</button>
+  <button onclick="turnOffPriz05()">Turn Off Priz 05</button>
+  <button onclick="turnOnPriz06()">Turn On Priz 06</button>
+  <button onclick="turnOffPriz06()">Turn Off Priz 06</button>
+  <button onclick="turnOnPriz07()">Turn On Priz 07</button>
+  <button onclick="turnOffPriz07()">Turn Off Priz 07</button>
+  <button onclick="turnOnPriz08()">Turn On Priz 08</button>
+  <button onclick="turnOffPriz08()">Turn Off Priz 08</button>
+  <button onclick="turnOnPriz09()">Turn On Priz 09</button>
+  <button onclick="turnOffPriz09()">Turn Off Priz 09</button>
+  <button onclick="turnOnPriz010()">Turn On Priz 010</button>
+  <button onclick="turnOffPriz010()">Turn Off Priz 010</button>
+
+
+  <h2>Perde Kontrolü</h2>
+  
+  <button onclick="openPerde01()">Open Perde 01</button>
+  <button onclick="closePerde01()">Close Perde 01</button>
+  <button onclick="openPerde02()">Open Perde 02</button>
+  <button onclick="closePerde02()">Close Perde 02</button>
+  <button onclick="openPerde03()">Open Perde 03</button>
+  <button onclick="closePerde03()">Close Perde 03 </button>
+  <button onclick="openPerde04()">Open Perde 04</button>
+  <button onclick="closePerde04()">Close Perde 04</button>
+  <button onclick="openPerde05()">Open Perde 05</button>
+  <button onclick="closePerde05()">Close Perde 05</button>
+  <button onclick="openPerde06()">Open Perde 06</button>
+  <button onclick="closePerde06()">Close Perde 06</button>
+  <button onclick="openPerde07()">Open Perde 07</button>
+  <button onclick="closePerde07()">Close Perde 07</button>
+  <button onclick="openPerde08()">Open Perde 08</button>
+  <button onclick="closePerde08()">Close Perde 08</button>
+  <button onclick="openPerde09()">Open Perde 09</button>
+  <button onclick="closePerde09()">Close Perde 09</button>
+  <button onclick="openPerde010()">Open Perde 10</button>
+  <button onclick="closePerde010()">Close Perde 10</button>
+
+  <script>
+    
+
+    function turnOnIşık01() {
+      fetch('/Işık01/on', { method: 'POST' });
+    }
+
+    function turnOffIşık01() {
+      fetch('/Işık01/off', { method: 'POST' });
+    }
+
+    function turnOnIşık02() {
+        fetch('/Işık02/on', { method: 'POST' });
+      }
+  
+    function turnOffIşık02() {
+        fetch('/Işık02/off', { method: 'POST' });
+      }
+    
+      function turnOnIşık03() {
+        fetch('/Işık03/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık03() {
+        fetch('/Işık03/off', { method: 'POST' });
+      }
+      function turnOnIşık04() {
+        fetch('/Işık04/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık04() {
+        fetch('/Işık04/off', { method: 'POST' });
+      }
+      function turnOnIşık05() {
+        fetch('/Işık05/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık05() {
+        fetch('/Işık05/off', { method: 'POST' });
+      }
+      function turnOnIşık06() {
+        fetch('/Işık06/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık06() {
+        fetch('/Işık06/off', { method: 'POST' });
+      }
+
+      function turnOnIşık07() {
+        fetch('/Işık07/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık07() {
+        fetch('/Işık07/off', { method: 'POST' });
+      }
+      function turnOnIşık08() {
+        fetch('/Işık08/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık08() {
+        fetch('/Işık08/off', { method: 'POST' });
+      }
+      function turnOnIşık09() {
+        fetch('/Işık09/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık09() {
+        fetch('/Işık09/off', { method: 'POST' });
+      }
+      function turnOnIşık010() {
+        fetch('/Işık010/on', { method: 'POST' });
+      }
+  
+      function turnOffIşık010() {
+        fetch('/Işık010/off', { method: 'POST' });
+      }
+      ////////////////////////////////////////////
+
+    function turnOnPriz01() {
+      fetch('/Priz01/on', { method: 'POST' });
+    }
+
+    function turnOffPriz01() {
+      fetch('/Priz01/off', { method: 'POST' });
+    }
+
+    function turnOnPriz02() {
+        fetch('/Priz02/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz02() {
+        fetch('/Priz02/off', { method: 'POST' });
+      }
+      function turnOnPriz03() {
+        fetch('/Priz03/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz03() {
+        fetch('/Priz03/off', { method: 'POST' });
+      }
+      function turnOnPriz04() {
+        fetch('/Priz04/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz04() {
+        fetch('/Priz04/off', { method: 'POST' });
+      }
+      function turnOnPriz05() {
+        fetch('/Priz05/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz05() {
+        fetch('/Priz05/off', { method: 'POST' });
+      }
+      function turnOnPriz06() {
+        fetch('/Priz06/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz06() {
+        fetch('/Priz06/off', { method: 'POST' });
+      }
+      function turnOnPriz07() {
+        fetch('/Priz07/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz07() {
+        fetch('/Priz07/off', { method: 'POST' });
+      }
+      function turnOnPriz08() {
+        fetch('/Priz08/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz08() {
+        fetch('/Priz08/off', { method: 'POST' });
+      }
+
+      function turnOnPriz09() {
+        fetch('/Priz09/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz09() {
+        fetch('/Priz09/off', { method: 'POST' });
+      }
+      function turnOnPriz010() {
+        fetch('/Priz010/on', { method: 'POST' });
+      }
+  
+      function turnOffPriz010() {
+        fetch('/Priz010/off', { method: 'POST' });
+      }
+
+
+
+    //////////////////////////////////////////////
+
+    
+
+    function openPerde01() {
+      fetch('/Perde01/open', { method: 'POST' });
+    }
+
+    function closePerde01() {
+      fetch('/Perde01/close', { method: 'POST' });
+    }
+
+    function openPerde02() {
+        fetch('/Perde02/open', { method: 'POST' });
+      }
+  
+      function closePerde02() {
+        fetch('/Perde02/close', { method: 'POST' });
+      }
+      
+    function openPerde03() {
+        fetch('/Perde03/open', { method: 'POST' });
+      }
+  
+      function closePerde03() {
+        fetch('/Perde03/close', { method: 'POST' });
+      }
+      
+    function openPerde04() {
+        fetch('/Perde04/open', { method: 'POST' });
+      }
+  
+      function closePerde04() {
+        fetch('/Perde04/close', { method: 'POST' });
+      }
+
+      
+    function openPerde05() {
+        fetch('/Perde05/open', { method: 'POST' });
+      }
+  
+      function closePerde05() {
+        fetch('/Perde05/close', { method: 'POST' });
+      }
+
+      function openPerde06() {
+        fetch('/Perde06/open', { method: 'POST' });
+      }
+  
+      function closePerde06() {
+        fetch('/Perde06/close', { method: 'POST' });
+      }
+      
+    function openPerde07() {
+        fetch('/Perde07/open', { method: 'POST' });
+      }
+  
+      function closePerde07() {
+        fetch('/Perde07/close', { method: 'POST' });
+      }
+      
+    function openPerde08() {
+        fetch('/Perde08/open', { method: 'POST' });
+      }
+  
+      function closePerde08() {
+        fetch('/Perde08/close', { method: 'POST' });
+      }
+      
+    function openPerde09() {
+        fetch('/Perde09/open', { method: 'POST' });
+      }
+  
+      function closePerde09() {
+        fetch('/Perde09/close', { method: 'POST' });
+      }
+
+    
+      function openPerde010() {
+        fetch('/Perde010/open', { method: 'POST' });
+      }
+  
+      function closePerde010() {
+        fetch('/Perde010/close', { method: 'POST' });
+      }
+    //////////////////////////////////////////////////
+  </script>
+</body>
+</html>
